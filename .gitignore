@@ -1,0 +1,25 @@
+__pycache__/
+*.py[cod]
+.ipynb_checkpoints/
+
+# Datasets, checkpoints, and generated experiment output.
+data/**/cifar-*-python*
+data/**/*.tar
+data/**/*.tar.gz
+data/**/train/
+data/**/val/
+model/
+log/
+plots/
+submit/
+output*/
+checkpoint-*/
+*_ckpt/
+*_dataset/
+wandb/
+runs/
+
+# Local environments.
+.venv/
+venv/
+*.egg-info/

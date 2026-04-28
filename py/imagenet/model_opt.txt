@@ -1,0 +1,29 @@
+resnet18:
+sgd 0.1
+adam 0.001
+adam_init 0.05
+adam_bn 0.001
+
+resnet50:
+sgd 0.1
+adam 0.0005
+adam_init 0.05
+adam_bn 0.0001
+
+vgg16bn:1
+sgd 0.1
+adam 0.0001
+adam_init 0.05
+adam_bn 1e-5
+
+vits:
+sgd
+adam 0.001
+adam_init 0.05
+adam_bn 0.00005
+
+vitb:
+sgd 0.05
+adam 0.0005
+adam_init 0.05
+adam_bn 0.00005
