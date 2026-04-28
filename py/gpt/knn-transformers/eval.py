@@ -615,12 +615,11 @@ def main():
         compute_metrics=compute_metrics
         return metrics
         
-    scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(optimizer, T_max=10)
     # Initialize our Trainer
     trainer =Trainer(
         model=model,
         args=training_args,    
-        train_dataset=train_dataset if training_args.do_train else None,
+        train_dataset=None,
         eval_dataset=eval_dataset if training_args.do_eval else None,
         processing_class=tokenizer,
         # Data collator will default to DataCollatorWithPadding, so we change it.

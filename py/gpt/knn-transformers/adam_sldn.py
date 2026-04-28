@@ -980,6 +980,7 @@ class Adam_s_ldnx(Optimizer):
 
             for p in group['params']:
                 if p.grad is not None:
+                    grad = p.grad
                     if p.grad.is_sparse:
                         raise RuntimeError('Adam does not support sparse gradients, please consider SparseAdam instead')
                     
@@ -998,12 +999,11 @@ class Adam_s_ldnx(Optimizer):
                     state['step'] += 1
                     # record the step after step update
 
-                    if weight_decay != 0:
-                        p.mul_(1 - lr * weight_decay)
+                    if group['weight_decay'] != 0:
+                        p.mul_(1 - group['lr'] * group['weight_decay'])
                     state['exp_avg'].mul_(beta1).add_(grad, alpha=1 - beta1)
-                    denom = torch.mean((state['exp_avg']*state['exp_avg'].conj())).sqrt().add_(eps)
-                    param.addcdiv_(state['exp_avg'], denom, value=-group['lr']*state['init_avg_abs_param'])
+                    denom = torch.mean((state['exp_avg']*state['exp_avg'].conj())).sqrt().add_(group['eps'])
+                    p.addcdiv_(state['exp_avg'], denom, value=-group['lr']*state['init_avg_abs_param'])
             
         return loss
-
 

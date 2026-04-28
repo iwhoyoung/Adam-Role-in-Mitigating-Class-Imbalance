@@ -11,6 +11,7 @@ from unicodedata import decimal
 import pandas as pd
 from timm.data.loader import create_loader
 dataset_name='imagenet_r10'
+account = os.environ.get("ADAM_IMBALANCE_ACCOUNT", "/home/wangjzh")
 
 sys.path.append("/home/wangjzh/adam_optimizer/py/adapoly_optimizer")
 import timm
@@ -22,7 +23,7 @@ from matplotlib import pyplot as plt
 from torch import nn
 from torchvision import transforms, models
 from torchvision.utils import make_grid
-from vit import vit_base_cifar_patch4_32, vit_cifar_patch4_32, vit_custom_cifar_32, vit_small_cifar_patch4_32, vit_small_cifar_patch4_32_old
+from vit import vit_base_cifar_patch4_32, vit_cifar_patch4_32, vit_custom_cifar_32, vit_small_cifar_patch4_32, vit_small_cifar_patch4_32_old, vit_small_cifar_patch16_224, vit_base_cifar_patch16_224
 from resnet import Bottleneck, CAMResNet, BasicBlock, ResNetOrigin, BasicBlockwores
 from imagenet_adv_img import CusImgPair 
 import pickle

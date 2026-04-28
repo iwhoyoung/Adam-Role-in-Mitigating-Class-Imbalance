@@ -420,6 +420,8 @@ def main_worker(gpu, ngpus_per_node, args):
         scheduler.step()
         acc1=train_acc1
         acc5=train_acc5
+        valid_loss = train_loss
+        valid_acc5 = train_acc5
         # remember best acc@1 and save checkpoint
         is_best = acc1 > best_acc1
         best_acc1 = max(acc1, best_acc1)

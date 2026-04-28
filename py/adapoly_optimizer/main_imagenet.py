@@ -22,6 +22,7 @@ import torchvision.transforms as transforms
 from torch.optim.lr_scheduler import StepLR,CosineAnnealingLR
 from torch.utils.data import Subset
 from vit import vit_base_cifar_patch4_32, vit_cifar_patch4_32, vit_cifar_patch4_32_depth4, vit_cifar_patch4_256, vit_custom_cifar_32, vit_small_cifar_patch4_32, vit_tiny_cifar_patch4_32,vit_small_cifar_patch16_224,vit_base_cifar_patch16_224,vit_small_cifar_patch16_224,vit_base_cifar_patch16_224
+from adassd_gamma import Adam_bn, Adam_ini
 try:
     from timm.data import TimmDatasetTar
 except ImportError:
@@ -422,6 +423,8 @@ def main_worker(gpu, ngpus_per_node, args):
         scheduler.step()
         acc1=train_acc1
         acc5=train_acc5
+        valid_loss = train_loss
+        valid_acc5 = train_acc5
         # remember best acc@1 and save checkpoint
         is_best = acc1 > best_acc1
         best_acc1 = max(acc1, best_acc1)

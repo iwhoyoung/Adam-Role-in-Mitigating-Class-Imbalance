@@ -104,6 +104,7 @@ def get_param(model, path, key):
     model = model.state_dict()
     names=[]
     df_datas = pd.DataFrame()
+    df_params = pd.DataFrame()
     for (key_a,value_a) in model.items():
         if not key in key_a:
             continue

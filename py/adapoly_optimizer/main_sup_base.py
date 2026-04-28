@@ -40,6 +40,7 @@ from PIL import Image
 import numpy as np
 
 import torch
+from torch.utils.data import Dataset
 parser = argparse.ArgumentParser(description='训练参数配置')
 parser.add_argument('--binary_num', type=int, default=64, help='二进制位数')
 parser.add_argument('--alpha', type=float, default=1.0, help='alpha超参数')
@@ -659,6 +660,34 @@ def select_top_n_classes_lmdb(dataset, n, label_list=[], plot=True, save_path=No
    
     subset = Subset(dataset, selected_indices)
     return subset, top_n_classes
+
+class ImageNetLT_LMDB(Dataset):
+    def __init__(self, root, version='imagenetlt_lt', train=True, transform=None, target_transform=None):
+        import io
+        import lmdb
+
+        split = 'train' if train else 'test'
+        self.path = os.path.join(root, version, f'{split}.lmdb')
+        self.env = lmdb.open(self.path, readonly=True, lock=False, readahead=False, meminit=False)
+        self.transform = transform
+        self.target_transform = target_transform
+        with self.env.begin(write=False) as txn:
+            self.length = pickle.loads(txn.get(b'__len__'))
+        self._io = io
+
+    def __len__(self):
+        return self.length
+
+    def __getitem__(self, index):
+        with self.env.begin(write=False) as txn:
+            item = pickle.loads(txn.get(str(index).encode()))
+        image = Image.open(self._io.BytesIO(item['image'])).convert('RGB')
+        target = item['label']
+        if self.transform is not None:
+            image = self.transform(image)
+        if self.target_transform is not None:
+            target = self.target_transform(target)
+        return image, target
 
 if __name__ == '__main__':
     if model_name=='vgg16bn':

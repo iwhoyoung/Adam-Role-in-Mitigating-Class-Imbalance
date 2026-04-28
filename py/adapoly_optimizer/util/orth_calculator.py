@@ -102,7 +102,8 @@ class OrthCalculator(Optimizer):
                     params_with_grad.append(p)
                     if p.grad.is_sparse:
                         raise RuntimeError('Adam does not support sparse gradients, please consider SparseAdam instead')
-                    grads.append(p.grad)
+                    grad = p.grad
+                    grads.append(grad)
 
                     state = self.state[p]
                     # Lazy state initialization
@@ -140,7 +141,8 @@ class OrthCalculator(Optimizer):
                     params_with_grad.append(p)
                     if p.grad.is_sparse:
                         raise RuntimeError('Adam does not support sparse gradients, please consider SparseAdam instead')
-                    grads.append(p.grad)
+                    grad = p.grad
+                    grads.append(grad)
 
                     state = self.state[p]
                     if group['weight_decay'] != 0:

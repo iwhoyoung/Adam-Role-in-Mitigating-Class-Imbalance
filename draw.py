@@ -7,6 +7,19 @@ def find_columns(df, suffix):
     #return [col for col in df.columns if col.startswith(suffix)]
     return [col for col in df.columns][:]
 
+def plot_series(df1, df2, columns, labels, ylabel, title, output_dir):
+    plt.figure(figsize=(10, 6))
+    for col in columns:
+        plt.plot(df1[col].values, label=f"{labels[0]} {col}")
+        plt.plot(df2[col].values, label=f"{labels[1]} {col}")
+    plt.xlabel("Epoch")
+    plt.ylabel(ylabel)
+    plt.title(title)
+    plt.legend()
+    plt.tight_layout()
+    plt.savefig(os.path.join(output_dir, f"{title.replace(' ', '_').lower()}.png"), dpi=300)
+    plt.close()
+
 import matplotlib.cm as cm
 import numpy as np
 
@@ -154,7 +167,7 @@ def plot_top5_last5(df1,suffix, label1, label2, ylabel, output_dir, csv1_name, m
     plot(df1, opt_name)
     #plot(df2, 'sgd')
 
-def plot_accuracy(csv1,  output_dir):
+def plot_accuracy(csv1, csv2, output_dir):
     # Load data
     df1 = pd.read_csv(csv1)
     df2 = pd.read_csv(csv2)
@@ -314,4 +327,3 @@ if __name__ == '__main__':
 
 
     
-

@@ -3,9 +3,13 @@ torchvision
 transformers
 datasets
 accelerate
+evaluate
+einops
 numpy
 pandas
 matplotlib
 scipy
+timm
 tqdm
 Pillow
+lmdb

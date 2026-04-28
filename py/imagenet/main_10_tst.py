@@ -6,6 +6,7 @@ import time
 import warnings
 from enum import Enum
 import csv
+import pandas as pd
 from collections import Counter
 import torch
 import torch.backends.cudnn as cudnn
@@ -573,7 +574,7 @@ def main_worker(gpu, ngpus_per_node, args):
                     "train/acc5": train_acc5,
                     "val/loss": valid_loss,
                     "val/acc1": acc1,
-                    "val/acc5": valid_acc5,
+                    "val/acc5": acc5,
                 })
             path='output_'+str(args.lr)+'_'+str(args.batch_size)+'_'+str(args.optimizer)+'_'+str(args.arch)+str(args.scheduler)
             if not os.path.exists(path):
