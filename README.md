@@ -1,6 +1,6 @@
-# Adam Can Mitigate Class Imbalance Without Element-Wise Gradient Normalization
+# From Element-Wise to Cross-Iteration Normalization: Revisiting Adam’s Role in Mitigating Class Imbalance
 
-This repository contains code for the ICLR 2026 submission **"Adam Can Mitigate Class Imbalance Without Element-Wise Gradient Normalization"**.
+This repository contains code for the submission **"From Element-Wise to Cross-Iteration Normalization: Revisiting Adam’s Role in Mitigating Class Imbalance"**.
 
 The code is organized in two layers:
 
@@ -67,6 +67,6 @@ pip install -r requirements.txt
 
 ## Notes
 
-- Full training was run on 4 V100 GPUs in the paper.
+- Full training was run on 2 V100 GPUs in the paper.
 - Some legacy scripts still contain absolute paths from the original experiment machine. Update dataset and output paths before launching full runs.
 - The repository keeps source code and reproducibility scripts, not raw datasets or generated checkpoints.
