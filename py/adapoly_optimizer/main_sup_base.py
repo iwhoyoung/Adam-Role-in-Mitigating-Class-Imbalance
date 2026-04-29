@@ -11,7 +11,6 @@ import time
 import timm
 import pickle
 from custom_dataset import CustomDatasetDivByFile, CustomDatasetDivByFolder
-from food101 import Food101
 from swin import swin_t_32
 import matplotlib.pyplot as plt
 sys.path.append("/home/LAB/lufh/adapoly_optimizer/py")
@@ -27,7 +26,6 @@ from resnet import Bottleneck, CAMResNet, BasicBlock, ResNetOrigin, BasicBlockwo
 from util.estimate_utils import cal_sim_norm_model, record_param_name
 from cifar10_pair_sim import CIFAR10SimPair,CIFAR10LT,CIFAR100LT
 from vit import vit_base_cifar_patch4_32, vit_cifar_patch4_32, vit_cifar_patch4_32_depth4, vit_cifar_patch4_256, vit_custom_cifar_32, vit_small_cifar_patch4_32, vit_tiny_cifar_patch4_32,vit_small_cifar_patch16_224,vit_base_cifar_patch16_224,vit_small_cifar_patch16_224,vit_base_cifar_patch16_224
-from xadassd_abl import XAdaSSD
 from adassd_gamma import Adam_bn,Adam_ini,Adam_Sbn,Sgd_m,SGD_Sbn
 from torchvision import models
 from torch.utils.data import Subset
